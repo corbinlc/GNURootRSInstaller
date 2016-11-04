@@ -19,13 +19,7 @@
 <!-- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN -->
 <!-- THE SOFTWARE. -->
 <resources>
-    <string name="app_name">GNURoot Runescape Installer</string>
-    <string name="signup_button_text">Signup for Runescape</string>
-    <string name="signup_textview_text">Will open the Runescape page for creating an account, if you don\'t already have one (doesn\'t work in the game...yet).</string>
-    <string name="install_button_text">Install/Update</string>
-    <string name="install_textview_text">Will Install/Update Runescape when the button is pressed.</string>
-    <string name="launch_button_text">Launch Runescape</string>
-    <string name="launch_textview_text">Pressing the button below will run Runescape in a new Xterm via GNURoot Debian.</string>
-    <string name="reconnect_button_text">Reconnect to previously launched game</string>
-    <string name="reconnect_textview_text">Reopen Runescape, if you have previously hit &quot;Launch Runescape&quot;, by hitting the button below.</string>
+    <string name="app_name">GNURoot Runescape Launcher</string>
+    <string name="update_error_message">Runescape is attempting to launch GNURoot Debian. It is either missing or out of date. Please update it and try again.</string>
+    <string name="button_affirmative">Got it!</string>
 </resources>
