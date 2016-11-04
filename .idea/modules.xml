@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GNURootLibrary/GNURootLibrary.iml" filepath="$PROJECT_DIR$/GNURootLibrary/GNURootLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/GNURootRSInstaller.iml" filepath="$PROJECT_DIR$/GNURootRSInstaller.iml" />
       <module fileurl="file://$PROJECT_DIR$/OldSchoolRS/OldSchoolRS.iml" filepath="$PROJECT_DIR$/OldSchoolRS/OldSchoolRS.iml" />
     </modules>

@@ -24,17 +24,13 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat">
         <activity
-            android:name="com.gnuroot.rsinstaller.RSInstallerMain"
+            android:name="com.gnuroot.rsinstaller.RSLauncherMain"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:configChanges="keyboard|keyboardHidden|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter android:label="Open Runescape in New XTerm">
-                <action android:name="com.gnuroot.debian.NEW_XWINDOW" />
-                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         
