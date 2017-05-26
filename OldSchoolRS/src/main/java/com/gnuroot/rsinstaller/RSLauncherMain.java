@@ -47,6 +47,10 @@ import android.support.v4.content.FileProvider;
 import android.util.Log;
 
 public class RSLauncherMain extends Activity {
+
+	// GNURoot won't launch unless its version matches at least this.
+	String GNURootVersion = "76";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,7 +63,7 @@ public class RSLauncherMain extends Activity {
 		try { packageInfo = getPackageManager().getPackageInfo("com.gnuroot.debian", 0); }
 		catch (NameNotFoundException e) { showUpdateError(); }
 
-		if(packageInfo == null || packageInfo.versionCode < 40)
+		if(packageInfo == null || packageInfo.versionCode < Integer.parseInt(GNURootVersion))
 			showUpdateError();
 
 		else {
@@ -108,18 +112,26 @@ public class RSLauncherMain extends Activity {
 		installIntent.putExtra("launchType", "launchXTerm");
         command =
             "#!/bin/bash\n" +
-            "if [ ! -f /support/.rs_custom_passed ]; then\n" +
+            "if [ ! -f /support/.rs_custom_passed ] || [ ! -f /support/.rs_updated ]; then\n" +
             "  /support/untargz rs_custom /support/rs_custom.tar.gz\n" +
             "fi\n" +
             "if [ -f /support/.rs_custom_passed ]; then\n" +
             "  if [ ! -f /support/.rs_script_passed ]; then\n" +
-            "    /support/blockingScript rs_script /support/oldschoolrs_install.sh\n" +
+            "    sudo /support/blockingScript rs_script /support/oldschoolrs_install.sh\n" +
             "  fi\n" +
+			"  if [ ! -f /support/.rs_script_updated ]; then\n" +
+			"    sudo mv /support/rs_update /usr/bin/oldschoolrs\n" +
+			"    if [ $? == 0 ]; then\n" +
+			"      touch /support/.rs_script_updated\n" +
+			"      sudo chmod 755 /usr/bin/oldschoolrs\n" +
+			"    fi\n" +
+			"  fi\n" +
             "  if [ -f /support/.rs_script_passed ]; then\n" +
             "    /usr/bin/oldschoolrs\n" +
             "  fi\n" +
             "fi\n";
 		installIntent.putExtra("command", command);
+		installIntent.putExtra("GNURootVersion", GNURootVersion);
 		installIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 		installIntent.setData(getTarUri());
 		return installIntent;
@@ -153,6 +165,7 @@ public class RSLauncherMain extends Activity {
 			Log.e("tag", "Failed to get asset file list.", e);
 		}
 		for(String filename : files) {
+			Log.i("files ", filename);
 			InputStream in = null;
 			OutputStream out = null;
 			try {
