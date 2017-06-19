@@ -131,6 +131,7 @@ public class RSLauncherMain extends Activity {
             "  fi\n" +
             "fi\n";
 		installIntent.putExtra("command", command);
+		installIntent.putExtra("packageName", "com.gnuroot.rsinstaller");
 		installIntent.putExtra("GNURootVersion", GNURootVersion);
 		installIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 		installIntent.setData(getTarUri());
